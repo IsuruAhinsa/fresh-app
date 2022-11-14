@@ -19,7 +19,7 @@ class PatientResource extends JsonResource
             "patient_id" => $this->external_patient_id,
             "first_appointment_id" => $this->appointments()->first()->appointment_id,
             "invoice" => $this->invoices()->pluck('invoice_no'),
-            "total_receipt" => $this->receipts()->count(),
+            "total_receipt" => $this->receipts()->sum('receipt_id'),
             "receipt" => $this->receipts()->pluck('receipt_id'),
             "first_receipt_date" => $this->receipts()->first()->receipt_date,
             "first_invoice_date" => $this->invoices()->first()->date,
