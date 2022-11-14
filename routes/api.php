@@ -20,5 +20,5 @@ Route::middleware('auth:api')->group(function () {
         return $request->user();
     });
 
-    Route::get('/patients/{patient}', [\App\Http\Controllers\PatientController::class, 'show']);
+    Route::get('/patients', [\App\Http\Controllers\PatientController::class, 'show']);
 });
