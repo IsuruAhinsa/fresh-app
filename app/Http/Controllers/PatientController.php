@@ -9,16 +9,16 @@ use Illuminate\Support\Carbon;
 
 class PatientController extends Controller
 {
-    public function show(Request $request, Patient $patient)
+    public function show(Request $request)
     {
         if (Carbon::createFromFormat('Y-m-d', $request->from) !== false && Carbon::createFromFormat('Y-m-d', $request->to) !== false) {
 
             $from = $request->from;
             $to = $request->to;
 
-            $patient->whereBetween('date_of_enquiry', [$from, $to])->first();
+            $patient = Patient::whereBetween('date_of_enquiry', [$from, $to])->get();
 
-            return new PatientResource($patient);
+            return PatientResource::collection($patient);
 
         } else {
 
